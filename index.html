@@ -5,19 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Mastermind</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Load the main JavaScript file asynchronously -->
     <script src="js/main.js" defer></script>
 </head>
 <body>
+    <!-- Main game container -->
     <div class="game">
+        <!-- Controls section -->
         <div class="controls">
+            <!-- Start button with class "button" -->
             <button class="button">Start</button>
+            <button class="button reset-button disabled">Reset</button>
+            <!-- Statistics display -->
             <div class="stats">
+                <!-- Display the number of moves -->
                 <div class="moves">0 moves</div>
+                <!-- Display the elapsed time -->
                 <div class="timer">Time : 0 sec</div>
             </div>
-        </div>
+        </div>    
+        <!-- Board container holding the game board and win message -->
         <div class="board-container">
+            <!-- Game board with data-dimension attribute set to 4 -->
             <div class="board" data-dimension="4"></div>
+            <!-- Win message displayed when the game is won -->
             <div class="win">You won!</div>
         </div>
     </div>

@@ -9,12 +9,24 @@
     <script src="js/main.js" defer></script>
 </head>
 <body>
+    <!--add the audio element-->
+    <audio id="background-music" loop>
+        <source src="pop.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+        
+      </audio>
+      
     <!-- Main game container -->
     <div class="game">
         <!-- Controls section -->
         <div class="controls">
             <!-- Start button with class "button" -->
-            <button class="button">Start</button>
+            <button class="button">Start
+                <button id="play-button">Play Music</button>
+<button id="pause-button">Pause Music</button>
+<input id="volume-slider" type="range" min="0" max="1" step="0.1" value="0.5">
+
+            </button>
             <button class="button reset-button disabled">Reset</button>
             <!-- Statistics display -->
             <div class="stats">

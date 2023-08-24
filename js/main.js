@@ -10,6 +10,33 @@ const selectors = {
   timerFeedback: document.querySelector('.timer-feedback'),
 };
 
+const backgroundMusic = document.getElementById('background-music');
+
+// Play the background music
+const playBackgroundMusic = () => {
+  backgroundMusic.play();
+};
+
+// Pause the background music
+const pauseBackgroundMusic = () => {
+  backgroundMusic.pause();
+};
+
+// Adjust the volume of the background music
+const setBackgroundMusicVolume = (volume) => {
+  backgroundMusic.volume = volume;
+};
+const playButton = document.getElementById('play-button');
+const pauseButton = document.getElementById('pause-button');
+const volumeSlider = document.getElementById('volume-slider');
+
+playButton.addEventListener('click', playBackgroundMusic);
+pauseButton.addEventListener('click', pauseBackgroundMusic);
+volumeSlider.addEventListener('input', (event) => {
+  const volume = parseFloat(event.target.value);
+  setBackgroundMusicVolume(volume);
+});
+
 // Game state variables
 const state = {
   gameStarted: false,
@@ -84,7 +111,8 @@ const startGame = () => {
   state.loop = setInterval(() => {
       state.totalTime++;
       selectors.moves.innerText = `${state.totalFlips} moves`;
-      selectors.timer.innerText = `Time: ${state.totalTime} sec`
+      selectors.timer.innerText = `Time: ${state.totalTime} sec`;
+      
           // Calculate elapsed time
           const elapsedTime = (new Date().getTime() - startTime) / 1000;
 
@@ -140,14 +168,13 @@ const flipCard = card => {
                 with <span class="highlight">${state.totalFlips}</span>
                 moves <br />
                 under <span class="highlight">${state.totalTime}</span>
-                seconds <br /> <br/ > 
-                <span class="timer-feedback"></span>
+                seconds 
                 </span> 
               `;
               clearInterval(state.loop);
           }, 1000);
       }
-  } 
+  }
 
 };
 

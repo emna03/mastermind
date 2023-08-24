@@ -7,6 +7,7 @@ const selectors = {
   start: document.querySelector('.button'),
   win: document.querySelector('.win'),
   reset: document.querySelector('.reset-button'),
+  timerFeedback: document.querySelector('.timer-feedback'),
 };
 
 // Game state variables
@@ -78,11 +79,24 @@ const startGame = () => {
   state.gameStarted = true;
   selectors.start.classList.add('disabled');
 
+  const startTime = new Date().getTime(); // Record the starting time
+
   state.loop = setInterval(() => {
       state.totalTime++;
-
       selectors.moves.innerText = `${state.totalFlips} moves`;
       selectors.timer.innerText = `Time: ${state.totalTime} sec`
+          // Calculate elapsed time
+          const elapsedTime = (new Date().getTime() - startTime) / 1000;
+
+          // Provide timer-based feedback
+    if (elapsedTime < 30) {
+      selectors.timerFeedback.innerText = 'Quick Match!';
+    } else if (elapsedTime < 60) {
+      selectors.timerFeedback.innerText = 'Nice Time!';
+    } else {
+      selectors.timerFeedback.innerText = 'Keep Going!';
+    }
+
   }, 1000);
 };
 
@@ -126,13 +140,15 @@ const flipCard = card => {
                 with <span class="highlight">${state.totalFlips}</span>
                 moves <br />
                 under <span class="highlight">${state.totalTime}</span>
-                seconds
-                </span>
+                seconds <br /> <br/ > 
+                <span class="timer-feedback"></span>
+                </span> 
               `;
               clearInterval(state.loop);
           }, 1000);
       }
-  }
+  } 
+
 };
 
 // Function to enable or disable buttons based on game state
